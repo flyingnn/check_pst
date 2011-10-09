@@ -1,0 +1,9 @@
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\bin\Debug\check_pst.exe
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\bin\Debug\check_pst.pdb
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\check_pst.Form1.resources
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\check_pst.Properties.Resources.resources
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\check_pst.exe
+c:\users\ling\documents\visual studio 2010\Projects\check_pst\check_pst\obj\x86\Debug\check_pst.pdb
