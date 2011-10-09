@@ -110,7 +110,9 @@
                         this.Controls.Add(this.textBox1);
                         this.Controls.Add(this.button1);
                         this.Name = "Form1";
+                        this.ShowInTaskbar = false;
                         this.Text = "Form1";
+                        this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
                         this.Load += new System.EventHandler(this.Form1_Load);
                         this.SizeChanged += new System.EventHandler(this.form1_sizechanged);
                         this.ResumeLayout(false);

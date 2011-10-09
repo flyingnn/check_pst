@@ -105,6 +105,12 @@ namespace check_pst
                                 this.notifyIcon1.Visible = false;
                         }
                 }
+                private void notifyIcon1_Click(object sender, EventArgs e)
+                {
+                        this.Visible = true;
+                        this.WindowState = FormWindowState.Normal;
+                        this.notifyIcon1.Visible = false;
+                }
 
                 private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
                 {
@@ -139,20 +145,18 @@ namespace check_pst
                         // 设置　 每秒钟的开始执行一次
                         if (intSecond == iSecond)
                         {
-                                MessageBox.Show("每秒钟的开始执行一次!");
-
-
+                                //MessageBox.Show("每秒钟的开始执行一次!");
                         }
                         // 设置　每个小时的30分钟开始执行
                         if (intMinute == iMinute && intSecond == iSecond)
                         {
-                                MessageBox.Show("每个小时的30分钟开始执行一次!");
+                                //MessageBox.Show("每个小时的30分钟开始执行一次!");
                         }
 
                         // 设置　每天的10:30:00开始执行程序
                         if (intHour == iHour && intMinute == iMinute && intSecond == iSecond)
                         {
-                                MessageBox.Show("在每天10点30分开始执行!");
+                                //MessageBox.Show("在每天10点30分开始执行!");
                         }
 
                 }
