@@ -32,10 +32,12 @@ namespace check_pst
                 private void Form1_Load(object sender, EventArgs e)
                 {
                         SetTimer();
+                        SetTimer_1();
                 }
 
                 private void button1_Click(object sender, EventArgs e)
                 {
+                        Process[] myProcesses = Process.GetProcesses();
                         //foreach (Process vProcess in myProcesses.OrderBy(g => g.Id))
                         foreach (Process vProcess in myProcesses.OrderBy(a => a.ProcessName))
                         {
@@ -48,8 +50,16 @@ namespace check_pst
                         Process[] CheProcesses = Process.GetProcesses();
                         string program = "PPSAP";
                         string program_1 = "PPStream";
+                        string program_2 = "python";
+                        string program_3 = "aoclbf 1.75";
+                        int f = 0;
                         int c = 0;
                         int d = 0;
+                        int e = 0;
+                        string app1 = "D:\\old-disk\\D\\install_2\\ming\\c00w-bitHopper\\c00w-bitHopper-55ae622\\run-bithopper.bat";
+                        string app2 = "D:\\old-disk\\D\\install_2\\ming\\phoenix\\aoclbf 1.75.exe";
+                        string app1_evn = System.IO.Path.GetDirectoryName(app1);
+                        string app2_evn = System.IO.Path.GetDirectoryName(app2);
                         //foreach (Process vProcess in CheProcesses)
                         foreach (Process vProcess in CheProcesses)
                         {
@@ -59,7 +69,10 @@ namespace check_pst
                                         c++;
                                 if (vProcess.ProcessName == program_1)
                                         d++;
-
+                                if (vProcess.ProcessName == program_2)
+                                        e++;
+                                if (vProcess.ProcessName == program_3)
+                                        f++;
                         }
                         //if (c > 0 & d > 0)
                         //        MessageBox.Show("PPSAP and PPStream is running...." + c.ToString());
@@ -75,7 +88,44 @@ namespace check_pst
 
                         }
 
+                        if (e < 1)
+                        {
+                                RunApp(app1,app1_evn);
+                        }
+                        if (f < 1)
+                        {
+                                RunApp(app2,app2_evn);
+                        }
 
+
+                }
+
+                //直接使用.Net提供的Process类来实现外部程序的启动
+                private void RunApp(string app, string dir_name = "", string run_args = "")
+                {
+                        Process proc = new Process();
+                        //执行的文件名
+                        proc.StartInfo.FileName = app;
+                        //执行的起始位置
+                        proc.StartInfo.WorkingDirectory = @dir_name;
+                        //执行参数
+                        proc.StartInfo.Arguments = @run_args;
+
+                        // 关闭Shell的使用
+                        //proc.StartInfo.UseShellExecute = false;
+                        // 重定向标准输入
+                        //proc.StartInfo.RedirectStandardInput = true;
+                        // 重定向标准输出
+                        //proc.StartInfo.RedirectStandardOutput = true;
+                        //重定向错误输出
+                        //proc.StartInfo.RedirectStandardError = true;
+                        // 设置不显示窗口
+                        //proc.StartInfo.CreateNoWindow = true;
+                        //运行
+                        proc.Start(); 
+                        
+                        
+                       // myprocessID = myProcess.Id;  // 获得该外部进程ID
                 }
 
                 private void button2_Click(object sender, EventArgs e)
@@ -129,9 +179,28 @@ namespace check_pst
 
                 }
 
+                public void SetTimer_1()
+                {
+                        System.Timers.Timer aTimer = new System.Timers.Timer();
+                        aTimer.Elapsed += new ElapsedEventHandler(TimeDo);
+                        //// 设置引发时间的时间间隔　此处设置为1秒(1000毫秒)
+                        aTimer.Interval = 1000 * 60 *60 * 3 ;
+                        aTimer.Enabled = true;
+
+                }
+
+                private void TimeDo(object source, ElapsedEventArgs e)
+                {
+                        ProcessesKiller.FindAndKillProcess("aoclbf 1.75");
+                        //MessageBox.Show("ttt");
+                       
+                        
+                }
+
                 private void TimeEvent(object source, ElapsedEventArgs e)
                 {
                         che();
+                        
                         // 得到 hour minute second  如果等于某个值就开始执行某个程序。
                         int intHour = e.SignalTime.Hour;
                         int intMinute = e.SignalTime.Minute;
@@ -162,14 +231,6 @@ namespace check_pst
                 }
 
 
-
-                //c#杀死系统进程的方法：
-
-                //System.Diagnostics.Process[] myp = System.Diagnostics.Process.GetProcessesByName("输入进程名称");
-                //foreach ( System.Diagnostics.Process xxx in myp)
-                //{
-                //    xxx.Kill();
-                //}
 
 
 
