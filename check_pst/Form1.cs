@@ -39,6 +39,7 @@ namespace check_pst
                 {
                         Process[] myProcesses = Process.GetProcesses();
                         //foreach (Process vProcess in myProcesses.OrderBy(g => g.Id))
+                        textBox1.Text = null;
                         foreach (Process vProcess in myProcesses.OrderBy(a => a.ProcessName))
                         {
                                 //Console.WriteLine("进程:{0}", vProcess.ProcessName);
