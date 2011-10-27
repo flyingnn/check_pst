@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="check_pst.exe" version="1.0.0.0" publicKeyToken="e2f94796ba91f4c4" language="neutral" processorArchitecture="x86" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="check_pst" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="check_pst.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC 清单选项
+          如果要更改 Windows 用户帐户控制级别，请用以下节点之一替换
+          requestedExecutionLevel 节点。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+          如果要利用文件和注册表虚拟化提供
+          向后兼容性，请删除 requestedExecutionLevel 节点。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AMS.Profile.dll" size="45056">
+      <assemblyIdentity name="AMS.Profile" version="2.0.1874.1294" language="neutral" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>YzB4BCwgSVkB51tNBB1eYuYoeug=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="check_pst.exe" size="87040">
+      <assemblyIdentity name="check_pst" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>4u4Dgse5pVzi2aF5+Kq4BFdVvUI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="AMS.Profile.dll" size="45056">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>YzB4BCwgSVkB51tNBB1eYuYoeug=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=YSLIU\Administrator" issuerKeyHash="dede66fb94ff7e0fa47cf5866fa6805d42de6273" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>OkozktUvtUq0pquxckf3bD+eWNk=</DigestValue></Reference></SignedInfo><SignatureValue>a848CZaHg4gp7/G890fQzr8A0V7yvmAftb1tiTjxHsDA6bNd7BL+ckPupSgBudM60ie0x7VpQRcRAJNG05KhRkfwQl/1b1dQzNIkD+rVEC78y02VX7q7Y8xWyQXpRGHuvUMoDGe+bDOvC4Ht6heVGLK9dGuGwUf36j5n60310z8=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>j6by3r44nPnPmSUf8OzlfIWw694ti78nF+NozgS85FSV6B0eg0I5kG2sBDweXqvA+aSrvPVKA/UD2adVtxI+kiXEApx/YY6vhUdw7OFTAqhUpCmOGQYb4TTwIKHFmkAMsYhezx+9ZnP28Ev2Twx3Rlm30K/4yXBtZ16vzzSrzO8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="d9589e3f6cf74772b1aba6b44ab52fd592334a3a" Description="" Url=""><as:assemblyIdentity name="check_pst.exe" version="1.0.0.0" publicKeyToken="e2f94796ba91f4c4" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=YSLIU\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>dZ+lZg50wlJihJt9Bzmcnfg2Q2k=</DigestValue></Reference></SignedInfo><SignatureValue>hIwkVvCYHaeJJU5M2SLYZHyOXdVZIBzXKbb6+W+NSzkgAgXOZlTyRwkKvYNSXkbzKIuP3giuVZ053HaUpBSMpo7l2y5UMvi8fi/DVR3pLpmZdlRx2qA7Q6snMjV3+c90ONwhteuMKXe6k9uShuS/HUktx9bdqvpD2tMWXcrENMs=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>j6by3r44nPnPmSUf8OzlfIWw694ti78nF+NozgS85FSV6B0eg0I5kG2sBDweXqvA+aSrvPVKA/UD2adVtxI+kiXEApx/YY6vhUdw7OFTAqhUpCmOGQYb4TTwIKHFmkAMsYhezx+9ZnP28Ev2Twx3Rlm30K/4yXBtZ16vzzSrzO8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB3TCCAUqgAwIBAgIQH3dfRSPAc6VALqRG+9lnQjAJBgUrDgMCHQUAMDExLzAtBgNVBAMeJgBZAFMATABJAFUAXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByMB4XDTExMTAyNzA5NTIyMloXDTEyMTAyNjE1NTIyMlowMTEvMC0GA1UEAx4mAFkAUwBMAEkAVQBcAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAI+m8t6+OJz5z5klH/Ds5XyFsOveLYu/JxfjaM4EvORUlegdHoNCOZBtrAQ8Hl6rwPmkq7z1SgP1A9mnVbcSPpIlxAKcf2GOr4VHcOzhUwKoVKQpjhkGG+E08CChxZpADLGIXs8fvWZz9vBL9k8Md0ZZt9Cv+MlwbWder880q8zvAgMBAAEwCQYFKw4DAh0FAAOBgQBVqEa7mgXvf84qVtYstFSjcNg85Zw8J6cKZ7xzeXUv3gjUFtRVRS7taz8pHCTOSJT4x7JTQs0jpsMoYVdcfpZx4ivDVcGSMw4bcxtoewdYTVAUcZiomwGfGUeRbT+fyRy34ZpuaWDYWmXKZQheslxRIctdas5Xnane+jGR8QqlJw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

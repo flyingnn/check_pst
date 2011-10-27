@@ -1,0 +1,375 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Diagnostics;
+using System.Timers;
+using System.IO;
+using AMS.Profile;
+
+namespace check_pst
+{
+        public partial class Main : Form
+        {
+
+                Process[] myProcesses = Process.GetProcesses();
+
+                string FileName = null;
+                static string IniName = "setting.ini";
+
+
+                static string Curdir = System.Environment.CurrentDirectory;
+
+                public static string IniFullName = Curdir + "\\" + IniName;
+                Ini ini = new Ini(IniFullName);
+                Dictionary<string, Dictionary<string, string>> node = new Dictionary<string, Dictionary<string, string>>();
+
+
+                public Main()
+                {
+
+                        InitializeComponent();
+                        int process_num = myProcesses.Length;
+                        myProcesses.ToArray();
+                        ProcessCountTextBox.Text = process_num.ToString();
+
+                }
+
+                private void Form1_Load(object sender, EventArgs e)
+                {
+                        //SetTimer();
+                        //SetTimer_1();
+                        DoIni();
+                }
+
+                private void button1_Click(object sender, EventArgs e)
+                {
+                        Process[] myProcesses = Process.GetProcesses();
+                        //foreach (Process vProcess in myProcesses.OrderBy(g => g.Id))
+                        ProcessListTextBox.Text = null;
+                        foreach (Process vProcess in myProcesses.OrderBy(a => a.ProcessName))
+                        {
+                                //Console.WriteLine("进程:{0}", vProcess.ProcessName);
+                                ProcessListTextBox.Text += vProcess.Id + " " + vProcess.ProcessName + "\r\n";
+                        }
+                }
+
+
+                private void button2_Click(object sender, EventArgs e)
+                {
+                        ProcessListTextBox.Text = null;
+                }
+
+                //最小化窗口，只在任务栏显示图标
+                private void form1_sizechanged(object sender, EventArgs e)
+                {
+                        if (this.WindowState == FormWindowState.Minimized)
+                        {
+                                this.Hide();
+                                this.notifyIcon1.Visible = true;
+                        }
+
+                }
+
+                //添加点击图标事件(首先需要添加事件引用)： 
+
+                private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+                {
+                        if (e.Button == MouseButtons.Left)  //单击鼠标左键也弹出菜单
+                        {
+                                this.Visible = true;
+                                this.WindowState = FormWindowState.Normal;
+                                this.notifyIcon1.Visible = false;
+                        }
+                }
+                private void notifyIcon1_Click(object sender, EventArgs e)
+                {
+                        this.Visible = true;
+                        this.WindowState = FormWindowState.Normal;
+                        this.notifyIcon1.Visible = false;
+                }
+                //任务栏图标双击
+                private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+                {
+                        this.Visible = true;
+                        this.WindowState = FormWindowState.Normal;
+                        this.notifyIcon1.Visible = false;
+                }
+
+
+                //指定程序路径
+                private void OpenButton_Click(object sender, EventArgs e)
+                {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.InitialDirectory = "c://";
+                        openFileDialog.Filter = "exe文件|*.exe|bat文件|*.bat|所有文件|*.*";
+                        openFileDialog.RestoreDirectory = true;
+                        openFileDialog.FilterIndex = 1;
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                                FileName = openFileDialog.FileName;
+                                FilePathTextBox.Text = FileName;
+
+
+                        }
+                }
+                //只能输入数字，和用退格键
+                private void TimeTextBox_KeyPress(object sender, KeyPressEventArgs e)
+                {
+                        if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
+                        {
+                                e.Handled = true;
+                        }
+                }
+                //保存到ini 文件
+                private void SaveButton_Click(object sender, EventArgs e)
+                {
+                        if (this.FilePathTextBox.Text == "" || this.TimeTextBox.Text == "")
+                        {
+                                MessageBox.Show("还没有设定程序路径和时间！");
+                                return;
+                        }
+                        else if (CheckRadio.Checked)
+                                DoSave("CheckRunning");
+                        else if (TimerRadio.Checked)
+                                DoSave("Kill");
+                        else
+                        {
+                                MessageBox.Show("请先选择检查类型！");
+                                return;
+                        }
+                        DoIni();
+
+                }
+                //保存动作
+                private void DoSave(string section)
+                {
+
+                        string key = null;
+                        string[] values = new string[2];
+
+                        if (section == "checkpair")
+                        {
+                                
+                                key = CheckPairTextBox1.Text;
+                                string pair_name2 = CheckPairTextBox2.Text;
+                                string value_time = CheckPairTimerTextBox.Text;
+                                values = new string[2] { pair_name2, value_time };
+                        }
+                        else
+                        {
+                                key = System.IO.Path.GetFileNameWithoutExtension(FileName);
+                                string value_time = this.TimeTextBox.Text;
+                                values = new string[2] { FileName, value_time };
+                        }
+                        string v = String.Join(",", values);
+
+
+
+                        Dictionary<string, string> kv = new Dictionary<string, string>();
+
+
+                        kv.Add(key, v);
+
+                        SaveIni(section, kv);
+                        //MessageBox.Show(section + kv);
+
+
+
+
+
+
+                }
+                //一次保存一个节和一对键值
+                private void SaveIni(string section, string key, string value)
+                {
+
+                        ini.SetValue(section, key, value);
+
+                }
+                //一次保存一个节和多对键值
+                private void SaveIni(string section, Dictionary<string, string> Entry)
+                {
+
+                        foreach (KeyValuePair<string, string> kv in Entry)
+                        {
+                                ini.SetValue(section, kv.Key, kv.Value);
+                        }
+
+
+
+                }
+                //一次保存多个节和多对键值
+                private void SaveIni(Dictionary<string, Dictionary<string, string>> sections)
+                {
+
+                        //Dictionary<string, Dictionary<string, string>> sections = new Dictionary<string, Dictionary<string, string>>();
+                        foreach (KeyValuePair<string, Dictionary<string, string>> kv in sections)
+                        {
+                                foreach (KeyValuePair<string, string> vv in kv.Value)
+                                {
+                                        ini.SetValue(kv.Key, vv.Key, vv.Value);
+                                }
+                        }
+
+
+                }
+                // read ini file
+                private Dictionary<string, Dictionary<string, string>> ReadIni()
+                {
+                        string[] sections = ini.GetSectionNames();
+                        Dictionary<string, string> keys = new Dictionary<string, string>();
+                        Dictionary<string, string> keys_tmp = new Dictionary<string, string>();
+                        Dictionary<string, Dictionary<string, string>> node = new Dictionary<string, Dictionary<string, string>>();
+                        foreach (string section in sections)
+                        {
+
+                                foreach (string key in ini.GetEntryNames(section))
+                                {
+                                        keys.Add(key, ini.GetValue(section, key).ToString());
+
+                                }
+                                keys_tmp = CloneDictionaryCloningValues(keys);
+                                node.Add(section, keys_tmp);
+
+                                keys.Clear();
+                                //values.Add(section);
+
+                        }
+                        return node;
+
+                }
+
+                // deepcopy Dictionary
+                public static Dictionary<TKey, TValue> CloneDictionaryCloningValues<TKey, TValue>
+                 (Dictionary<TKey, TValue> original) where TValue : ICloneable
+                {
+                        Dictionary<TKey, TValue> ret = new Dictionary<TKey, TValue>(original.Count, original.Comparer);
+                        foreach (KeyValuePair<TKey, TValue> entry in original)
+                        {
+                                ret.Add(entry.Key, (TValue)entry.Value.Clone());
+                        }
+                        return ret;
+                }
+
+
+
+                //show ini content
+                private string ShowIni(string type = "")
+                {
+                        node = ReadIni();
+                        string content = "";
+
+                        foreach (KeyValuePair<string, Dictionary<string, string>> section in node)
+                        {
+                                if (type != "" && type != section.Key)
+                                        continue;
+                                content += "[" + section.Key + "]\r\n";
+                                foreach (KeyValuePair<string, string> key in section.Value)
+                                {
+                                        content += key.Key + "=" + key.Value + "\r\n";
+                                }
+                                //values.Add(section);
+
+                        }
+
+                        return content;
+                }
+                // show ini file content at textbox
+                private void ViewButton_Click(object sender, EventArgs e)
+                {
+                        ProcessListTextBox.Text = ShowIni();
+                }
+
+                private void DoIni()
+                {
+                        node = ReadIni();
+                        int time = 10;
+
+                        foreach (KeyValuePair<string, Dictionary<string, string>> section in node)
+                        {
+                                string run_type = section.Key.ToLower();
+                                foreach (KeyValuePair<string, string> key in section.Value)
+                                {
+
+                                        if (run_type == "checkpair")
+                                        {
+                                                try
+                                                {
+                                                        time = Convert.ToInt32(key.Value.Split(',')[1]);
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                        MessageBox.Show(e.Message);
+                                                }
+                                                string pair_name1 = key.Key;
+                                                string pair_name2 = key.Value.Split(',')[0];
+                                                DoList(time, run_type, null, pair_name1, pair_name2);
+                                        }
+                                        else
+                                        {
+                                                try
+                                                {
+                                                        time = Convert.ToInt32(key.Value.Split(',')[1]);
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                        MessageBox.Show(e.Message);
+                                                }
+                                                string process = key.Value.Split(',')[0];
+                                                DoList(time, run_type, process);
+                                        }
+                                }
+                                //values.Add(section);
+
+                        }
+                }
+
+
+                private void DoList(int time, string run_type, string process = null, string pair_name1 = null, string pair_name2 = null)
+                {
+                        TimerDo do_list = new TimerDo();
+                        do_list.Time = time;
+                        do_list.ProcessName = process;
+                        do_list.PairName1 = pair_name1;
+                        do_list.PairName2 = pair_name2;
+                        do_list.DoType = run_type;
+                        do_list.SetTimer();
+                }
+
+                private void CheckPairButton_Click(object sender, EventArgs e)
+                {
+                        if (CheckPairTextBox1.Text.Length == 0 || CheckPairTextBox2.Text.Length == 0 || CheckPairTimerTextBox.Text.Length == 0)
+                        {
+                                MessageBox.Show("请先填完参数！");
+                                return;
+                        }
+                        else
+                                DoSave("checkpair");
+                        DoIni();
+
+                }
+
+                private void CheckPairTimerTextBox_KeyPress(object sender, KeyPressEventArgs e)
+                {
+                        if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
+                        {
+                                e.Handled = true;
+                        }
+                }
+
+
+
+
+
+
+
+
+        }
+
+
+}
