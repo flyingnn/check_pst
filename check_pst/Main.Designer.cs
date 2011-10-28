@@ -44,19 +44,22 @@
                         this.SaveButton = new System.Windows.Forms.Button();
                         this.TimeTextBox = new System.Windows.Forms.TextBox();
                         this.label3 = new System.Windows.Forms.Label();
-                        this.ViewButton = new System.Windows.Forms.Button();
                         this.label2 = new System.Windows.Forms.Label();
                         this.OpenButton = new System.Windows.Forms.Button();
                         this.FilePathTextBox = new System.Windows.Forms.TextBox();
+                        this.ViewButton = new System.Windows.Forms.Button();
                         this.groupBox2 = new System.Windows.Forms.GroupBox();
-                        this.label5 = new System.Windows.Forms.Label();
-                        this.CheckPairTextBox1 = new System.Windows.Forms.TextBox();
-                        this.CheckPairTextBox2 = new System.Windows.Forms.TextBox();
-                        this.label6 = new System.Windows.Forms.Label();
-                        this.CheckPairButton = new System.Windows.Forms.Button();
                         this.CheckPairTimerTextBox = new System.Windows.Forms.TextBox();
                         this.label1 = new System.Windows.Forms.Label();
+                        this.CheckPairButton = new System.Windows.Forms.Button();
+                        this.CheckPairTextBox2 = new System.Windows.Forms.TextBox();
+                        this.label6 = new System.Windows.Forms.Label();
+                        this.CheckPairTextBox1 = new System.Windows.Forms.TextBox();
+                        this.label5 = new System.Windows.Forms.Label();
                         this.panel1 = new System.Windows.Forms.Panel();
+                        this.OpenFileButton = new System.Windows.Forms.Button();
+                        this.StopButton = new System.Windows.Forms.Button();
+                        this.RestartButton = new System.Windows.Forms.Button();
                         this.groupBox1.SuspendLayout();
                         this.groupBox2.SuspendLayout();
                         this.panel1.SuspendLayout();
@@ -197,17 +200,6 @@
                         this.label3.TabIndex = 4;
                         this.label3.Text = "间隔时间(秒)";
                         // 
-                        // ViewButton
-                        // 
-                        this.ViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ViewButton.Location = new System.Drawing.Point(479, 312);
-                        this.ViewButton.Name = "ViewButton";
-                        this.ViewButton.Size = new System.Drawing.Size(43, 25);
-                        this.ViewButton.TabIndex = 3;
-                        this.ViewButton.Text = "查看";
-                        this.ViewButton.UseVisualStyleBackColor = true;
-                        this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
-                        // 
                         // label2
                         // 
                         this.label2.AutoSize = true;
@@ -235,6 +227,17 @@
                         this.FilePathTextBox.Size = new System.Drawing.Size(126, 21);
                         this.FilePathTextBox.TabIndex = 0;
                         // 
+                        // ViewButton
+                        // 
+                        this.ViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ViewButton.Location = new System.Drawing.Point(479, 312);
+                        this.ViewButton.Name = "ViewButton";
+                        this.ViewButton.Size = new System.Drawing.Size(43, 25);
+                        this.ViewButton.TabIndex = 3;
+                        this.ViewButton.Text = "查看";
+                        this.ViewButton.UseVisualStyleBackColor = true;
+                        this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
+                        // 
                         // groupBox2
                         // 
                         this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,21 +255,31 @@
                         this.groupBox2.TabStop = false;
                         this.groupBox2.Text = "定时检查无赖子程序是否运行";
                         // 
-                        // label5
+                        // CheckPairTimerTextBox
                         // 
-                        this.label5.AutoSize = true;
-                        this.label5.Location = new System.Drawing.Point(10, 26);
-                        this.label5.Name = "label5";
-                        this.label5.Size = new System.Drawing.Size(65, 12);
-                        this.label5.TabIndex = 0;
-                        this.label5.Text = "主程序名字";
+                        this.CheckPairTimerTextBox.Location = new System.Drawing.Point(89, 90);
+                        this.CheckPairTimerTextBox.Name = "CheckPairTimerTextBox";
+                        this.CheckPairTimerTextBox.Size = new System.Drawing.Size(50, 21);
+                        this.CheckPairTimerTextBox.TabIndex = 9;
+                        this.CheckPairTimerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckPairTimerTextBox_KeyPress);
                         // 
-                        // CheckPairTextBox1
+                        // label1
                         // 
-                        this.CheckPairTextBox1.Location = new System.Drawing.Point(89, 23);
-                        this.CheckPairTextBox1.Name = "CheckPairTextBox1";
-                        this.CheckPairTextBox1.Size = new System.Drawing.Size(126, 21);
-                        this.CheckPairTextBox1.TabIndex = 1;
+                        this.label1.Location = new System.Drawing.Point(10, 94);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(78, 15);
+                        this.label1.TabIndex = 8;
+                        this.label1.Text = "间隔时间(秒)";
+                        // 
+                        // CheckPairButton
+                        // 
+                        this.CheckPairButton.Location = new System.Drawing.Point(235, 56);
+                        this.CheckPairButton.Name = "CheckPairButton";
+                        this.CheckPairButton.Size = new System.Drawing.Size(43, 25);
+                        this.CheckPairButton.TabIndex = 7;
+                        this.CheckPairButton.Text = "Save";
+                        this.CheckPairButton.UseVisualStyleBackColor = true;
+                        this.CheckPairButton.Click += new System.EventHandler(this.CheckPairButton_Click);
                         // 
                         // CheckPairTextBox2
                         // 
@@ -284,31 +297,21 @@
                         this.label6.TabIndex = 2;
                         this.label6.Text = "子程序名字";
                         // 
-                        // CheckPairButton
+                        // CheckPairTextBox1
                         // 
-                        this.CheckPairButton.Location = new System.Drawing.Point(235, 56);
-                        this.CheckPairButton.Name = "CheckPairButton";
-                        this.CheckPairButton.Size = new System.Drawing.Size(43, 25);
-                        this.CheckPairButton.TabIndex = 7;
-                        this.CheckPairButton.Text = "Save";
-                        this.CheckPairButton.UseVisualStyleBackColor = true;
-                        this.CheckPairButton.Click += new System.EventHandler(this.CheckPairButton_Click);
+                        this.CheckPairTextBox1.Location = new System.Drawing.Point(89, 23);
+                        this.CheckPairTextBox1.Name = "CheckPairTextBox1";
+                        this.CheckPairTextBox1.Size = new System.Drawing.Size(126, 21);
+                        this.CheckPairTextBox1.TabIndex = 1;
                         // 
-                        // CheckPairTimerTextBox
+                        // label5
                         // 
-                        this.CheckPairTimerTextBox.Location = new System.Drawing.Point(89, 90);
-                        this.CheckPairTimerTextBox.Name = "CheckPairTimerTextBox";
-                        this.CheckPairTimerTextBox.Size = new System.Drawing.Size(50, 21);
-                        this.CheckPairTimerTextBox.TabIndex = 9;
-                        this.CheckPairTimerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckPairTimerTextBox_KeyPress);
-                        // 
-                        // label1
-                        // 
-                        this.label1.Location = new System.Drawing.Point(10, 94);
-                        this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(78, 15);
-                        this.label1.TabIndex = 8;
-                        this.label1.Text = "间隔时间(秒)";
+                        this.label5.AutoSize = true;
+                        this.label5.Location = new System.Drawing.Point(10, 26);
+                        this.label5.Name = "label5";
+                        this.label5.Size = new System.Drawing.Size(65, 12);
+                        this.label5.TabIndex = 0;
+                        this.label5.Text = "主程序名字";
                         // 
                         // panel1
                         // 
@@ -323,11 +326,44 @@
                         this.panel1.Size = new System.Drawing.Size(527, 46);
                         this.panel1.TabIndex = 8;
                         // 
+                        // OpenFileButton
+                        // 
+                        this.OpenFileButton.Location = new System.Drawing.Point(380, 312);
+                        this.OpenFileButton.Name = "OpenFileButton";
+                        this.OpenFileButton.Size = new System.Drawing.Size(85, 25);
+                        this.OpenFileButton.TabIndex = 9;
+                        this.OpenFileButton.Text = "打开配置文件";
+                        this.OpenFileButton.UseVisualStyleBackColor = true;
+                        this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
+                        // 
+                        // StopButton
+                        // 
+                        this.StopButton.Location = new System.Drawing.Point(240, 312);
+                        this.StopButton.Name = "StopButton";
+                        this.StopButton.Size = new System.Drawing.Size(45, 25);
+                        this.StopButton.TabIndex = 10;
+                        this.StopButton.Text = "停止";
+                        this.StopButton.UseVisualStyleBackColor = true;
+                        this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+                        // 
+                        // RestartButton
+                        // 
+                        this.RestartButton.Location = new System.Drawing.Point(300, 312);
+                        this.RestartButton.Name = "RestartButton";
+                        this.RestartButton.Size = new System.Drawing.Size(65, 25);
+                        this.RestartButton.TabIndex = 11;
+                        this.RestartButton.Text = "重新启动";
+                        this.RestartButton.UseVisualStyleBackColor = true;
+                        this.RestartButton.Click += new System.EventHandler(this.RestartButton_Click);
+                        // 
                         // Main
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(551, 394);
+                        this.Controls.Add(this.RestartButton);
+                        this.Controls.Add(this.StopButton);
+                        this.Controls.Add(this.OpenFileButton);
                         this.Controls.Add(this.groupBox2);
                         this.Controls.Add(this.groupBox1);
                         this.Controls.Add(this.ViewButton);
@@ -379,6 +415,9 @@
                 private System.Windows.Forms.TextBox CheckPairTimerTextBox;
                 private System.Windows.Forms.Label label1;
                 private System.Windows.Forms.Panel panel1;
+                private System.Windows.Forms.Button OpenFileButton;
+                private System.Windows.Forms.Button StopButton;
+                private System.Windows.Forms.Button RestartButton;
         }
 }
 

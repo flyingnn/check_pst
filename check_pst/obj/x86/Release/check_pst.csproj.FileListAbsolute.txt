@@ -1,9 +1,0 @@
-D:\data\C#\check_pst\check_pst\bin\Release\check_pst.exe
-D:\data\C#\check_pst\check_pst\bin\Release\check_pst.pdb
-D:\data\C#\check_pst\check_pst\obj\x86\Release\ResolveAssemblyReference.cache
-D:\data\C#\check_pst\check_pst\obj\x86\Release\check_pst.Form1.resources
-D:\data\C#\check_pst\check_pst\obj\x86\Release\check_pst.Properties.Resources.resources
-D:\data\C#\check_pst\check_pst\obj\x86\Release\GenerateResource.read.1.tlog
-D:\data\C#\check_pst\check_pst\obj\x86\Release\GenerateResource.write.1.tlog
-D:\data\C#\check_pst\check_pst\obj\x86\Release\check_pst.exe
-D:\data\C#\check_pst\check_pst\obj\x86\Release\check_pst.pdb

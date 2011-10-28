@@ -13,6 +13,7 @@ namespace check_pst
                 private string pair_name2 = null;
                 private string app;
                 private string app_evn;
+                public System.Timers.Timer aTimer = new System.Timers.Timer();
 
 
                 public TimerDo()
@@ -56,12 +57,13 @@ namespace check_pst
                                 pair_name2 = value;
                         }
                 }
+                
             
                 //定时器
                 public void SetTimer()
                 {
                         int second = time;
-                        System.Timers.Timer aTimer = new System.Timers.Timer();
+                        //System.Timers.Timer aTimer = new System.Timers.Timer();
 
                         //// 设置引发时间的时间间隔　此处设置为1秒(1000毫秒)
                         aTimer.Interval = 1000 * second;
@@ -176,7 +178,7 @@ namespace check_pst
                 }
 
                 //直接使用.Net提供的Process类来实现外部程序的启动
-                private void RunApp(string app, string dir_name = "", string run_args = "")
+                public void RunApp(string app, string dir_name = "", string run_args = "")
                 {
                         Process proc = new Process();
                         //执行的文件名

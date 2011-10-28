@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -27,7 +28,8 @@ namespace check_pst
                 public static string IniFullName = Curdir + "\\" + IniName;
                 Ini ini = new Ini(IniFullName);
                 Dictionary<string, Dictionary<string, string>> node = new Dictionary<string, Dictionary<string, string>>();
-
+                //TimerDo[] ProcList = new TimerDo[5];
+                List<TimerDo> ProcList = new List<TimerDo>();
 
                 public Main()
                 {
@@ -128,21 +130,29 @@ namespace check_pst
                 //保存到ini 文件
                 private void SaveButton_Click(object sender, EventArgs e)
                 {
+                        string run_type = null;
                         if (this.FilePathTextBox.Text == "" || this.TimeTextBox.Text == "")
                         {
                                 MessageBox.Show("还没有设定程序路径和时间！");
                                 return;
                         }
                         else if (CheckRadio.Checked)
+                        {
                                 DoSave("CheckRunning");
+                                run_type = "CheckRunning";
+                        }
                         else if (TimerRadio.Checked)
+                        {
                                 DoSave("Kill");
+                                run_type = "Kill";
+                        }
                         else
                         {
                                 MessageBox.Show("请先选择检查类型！");
                                 return;
                         }
-                        DoIni();
+                        DoList(Convert.ToInt32(TimeTextBox.Text), run_type, FilePathTextBox.Text);
+                        //DoIni();
 
                 }
                 //保存动作
@@ -154,7 +164,7 @@ namespace check_pst
 
                         if (section == "checkpair")
                         {
-                                
+
                                 key = CheckPairTextBox1.Text;
                                 string pair_name2 = CheckPairTextBox2.Text;
                                 string value_time = CheckPairTimerTextBox.Text;
@@ -333,12 +343,24 @@ namespace check_pst
                 private void DoList(int time, string run_type, string process = null, string pair_name1 = null, string pair_name2 = null)
                 {
                         TimerDo do_list = new TimerDo();
-                        do_list.Time = time;
-                        do_list.ProcessName = process;
-                        do_list.PairName1 = pair_name1;
-                        do_list.PairName2 = pair_name2;
-                        do_list.DoType = run_type;
-                        do_list.SetTimer();
+
+                        //do_list.Time = time;
+                        //do_list.ProcessName = process;
+                        //do_list.PairName1 = pair_name1;
+                        //do_list.PairName2 = pair_name2;
+                        //do_list.DoType = run_type;
+                        //do_list.SetTimer();
+
+                        ProcList.Add(do_list);
+                        ProcList[ProcList.Count - 1].Time = time;
+                        ProcList[ProcList.Count - 1].ProcessName = process;
+                        ProcList[ProcList.Count - 1].PairName1 = pair_name1;
+                        ProcList[ProcList.Count - 1].PairName2 = pair_name2;
+                        ProcList[ProcList.Count - 1].DoType = run_type;
+                        ProcList[ProcList.Count - 1].SetTimer();
+
+                        //MessageBox.Show(time.ToString() + process + run_type + pair_name1 + pair_name2);
+                        MessageBox.Show(ProcList.Count.ToString());
                 }
 
                 private void CheckPairButton_Click(object sender, EventArgs e)
@@ -350,16 +372,56 @@ namespace check_pst
                         }
                         else
                                 DoSave("checkpair");
-                        DoIni();
+                        DoList(Convert.ToInt32(CheckPairTimerTextBox.Text), "checkpair", null, CheckPairTextBox1.Text, CheckPairTextBox2.Text);
+                        //DoIni();
 
                 }
 
+                //只可以输入数字
                 private void CheckPairTimerTextBox_KeyPress(object sender, KeyPressEventArgs e)
                 {
                         if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
                         {
                                 e.Handled = true;
                         }
+                }
+                //用记事本打开配置文件
+                private void OpenFileButton_Click(object sender, EventArgs e)
+                {
+                        TimerDo app = new TimerDo();
+                        app.RunApp("notepad.exe", null, IniFullName);
+
+                }
+
+                private void StopButton_Click(object sender, EventArgs e)
+                {
+                        StopProc();
+                        RestartButton.Enabled = true;
+                        StopButton.Enabled = false;
+                                
+                }
+                //停止所有的检查功能
+                private void StopProc()
+                {
+                        for (int i = 0; i < ProcList.Count; i++)
+                        {
+                                ProcList[i].aTimer.Stop();
+                                ProcList[i].aTimer.Enabled = false;
+                                ProcList[i].aTimer.Dispose();
+                                
+                        }
+                        ProcList.Clear();
+                }
+                //重新启动所有的检查功能
+                private void RestartButton_Click(object sender, EventArgs e)
+                {
+                        RestartProc();
+                        StopButton.Enabled = true;
+                }
+                private void RestartProc()
+                {
+                        StopProc();
+                        DoIni();
                 }
 
 
