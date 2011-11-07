@@ -69,7 +69,7 @@
                         // 
                         this.GetProcessButton.Location = new System.Drawing.Point(107, 13);
                         this.GetProcessButton.Name = "GetProcessButton";
-                        this.GetProcessButton.Size = new System.Drawing.Size(77, 26);
+                        this.GetProcessButton.Size = new System.Drawing.Size(77, 25);
                         this.GetProcessButton.TabIndex = 0;
                         this.GetProcessButton.Text = "GetProcess";
                         this.GetProcessButton.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
                         // 
                         // CleanButton
                         // 
-                        this.CleanButton.Location = new System.Drawing.Point(20, 12);
+                        this.CleanButton.Location = new System.Drawing.Point(20, 13);
                         this.CleanButton.Name = "CleanButton";
                         this.CleanButton.Size = new System.Drawing.Size(43, 25);
                         this.CleanButton.TabIndex = 2;
@@ -369,6 +369,7 @@
                         this.Controls.Add(this.ViewButton);
                         this.Controls.Add(this.ProcessListTextBox);
                         this.Controls.Add(this.panel1);
+                        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "Main";
                         this.ShowInTaskbar = false;
                         this.Text = "Main";

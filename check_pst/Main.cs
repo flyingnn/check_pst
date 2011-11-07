@@ -4,8 +4,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Timers;
@@ -360,7 +360,7 @@ namespace check_pst
                         ProcList[ProcList.Count - 1].SetTimer();
 
                         //MessageBox.Show(time.ToString() + process + run_type + pair_name1 + pair_name2);
-                        MessageBox.Show(ProcList.Count.ToString());
+                        //MessageBox.Show(ProcList.Count.ToString());
                 }
 
                 private void CheckPairButton_Click(object sender, EventArgs e)

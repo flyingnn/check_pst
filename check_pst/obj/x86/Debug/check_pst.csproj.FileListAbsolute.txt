@@ -21,3 +21,6 @@ D:\data\C#\check_pst\check_pst\bin\Debug\check_pst.exe.manifest
 D:\data\C#\check_pst\check_pst\bin\Debug\check_pst.application
 D:\data\C#\check_pst\check_pst\obj\x86\Debug\check_pst.exe.manifest
 D:\data\C#\check_pst\check_pst\obj\x86\Debug\check_pst.application
+D:\data\C#\check_pst\check_pst\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\data\C#\check_pst\check_pst\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\data\C#\check_pst\check_pst\bin\Debug\check_pst.exe.config
