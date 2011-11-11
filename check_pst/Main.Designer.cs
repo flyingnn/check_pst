@@ -60,9 +60,11 @@
                         this.OpenFileButton = new System.Windows.Forms.Button();
                         this.StopButton = new System.Windows.Forms.Button();
                         this.RestartButton = new System.Windows.Forms.Button();
+                        this.dataGridView1 = new System.Windows.Forms.DataGridView();
                         this.groupBox1.SuspendLayout();
                         this.groupBox2.SuspendLayout();
                         this.panel1.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // GetProcessButton
@@ -328,6 +330,7 @@
                         // 
                         // OpenFileButton
                         // 
+                        this.OpenFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.OpenFileButton.Location = new System.Drawing.Point(380, 312);
                         this.OpenFileButton.Name = "OpenFileButton";
                         this.OpenFileButton.Size = new System.Drawing.Size(85, 25);
@@ -338,6 +341,7 @@
                         // 
                         // StopButton
                         // 
+                        this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.StopButton.Location = new System.Drawing.Point(240, 312);
                         this.StopButton.Name = "StopButton";
                         this.StopButton.Size = new System.Drawing.Size(45, 25);
@@ -348,6 +352,7 @@
                         // 
                         // RestartButton
                         // 
+                        this.RestartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.RestartButton.Location = new System.Drawing.Point(300, 312);
                         this.RestartButton.Name = "RestartButton";
                         this.RestartButton.Size = new System.Drawing.Size(65, 25);
@@ -356,11 +361,28 @@
                         this.RestartButton.UseVisualStyleBackColor = true;
                         this.RestartButton.Click += new System.EventHandler(this.RestartButton_Click);
                         // 
+                        // dataGridView1
+                        // 
+                        this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
+                        this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                        this.dataGridView1.GridColor = System.Drawing.Color.Black;
+                        this.dataGridView1.Location = new System.Drawing.Point(32, 14);
+                        this.dataGridView1.Name = "dataGridView1";
+                        this.dataGridView1.RowHeadersVisible = false;
+                        this.dataGridView1.RowHeadersWidth = 10;
+                        this.dataGridView1.RowTemplate.Height = 23;
+                        this.dataGridView1.Size = new System.Drawing.Size(195, 319);
+                        this.dataGridView1.TabIndex = 12;
+                        // 
                         // Main
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(551, 394);
+                        this.Controls.Add(this.dataGridView1);
                         this.Controls.Add(this.RestartButton);
                         this.Controls.Add(this.StopButton);
                         this.Controls.Add(this.OpenFileButton);
@@ -382,6 +404,7 @@
                         this.groupBox2.PerformLayout();
                         this.panel1.ResumeLayout(false);
                         this.panel1.PerformLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -419,6 +442,7 @@
                 private System.Windows.Forms.Button OpenFileButton;
                 private System.Windows.Forms.Button StopButton;
                 private System.Windows.Forms.Button RestartButton;
+                private System.Windows.Forms.DataGridView dataGridView1;
         }
 }
 

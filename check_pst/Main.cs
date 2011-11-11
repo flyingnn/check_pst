@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Linq;
+//using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Timers;
@@ -36,7 +36,7 @@ namespace check_pst
 
                         InitializeComponent();
                         int process_num = myProcesses.Length;
-                        myProcesses.ToArray();
+                        //myProcesses.ToArray();
                         ProcessCountTextBox.Text = process_num.ToString();
 
                 }
@@ -50,14 +50,36 @@ namespace check_pst
 
                 private void button1_Click(object sender, EventArgs e)
                 {
+                        dataGridView1.Visible = true;
                         Process[] myProcesses = Process.GetProcesses();
-                        //foreach (Process vProcess in myProcesses.OrderBy(g => g.Id))
+                        ArrayList ProcList = new ArrayList();
+                        DataTable d = new DataTable();
+                        string[] s = new string[2];
+                        d.Columns.Add("进程ID");
+                        d.Columns.Add("进程名称");
+                        
+                       //foreach (Process vProcess in myProcesses.OrderBy(g => g.Id))
                         ProcessListTextBox.Text = null;
-                        foreach (Process vProcess in myProcesses.OrderBy(a => a.ProcessName))
+                        //.net 4.0 才有的排序功能
+                        //foreach (Process vProcess in myProcesses.OrderBy(a => a.ProcessName))
+                        foreach (Process vProcess in myProcesses)
                         {
                                 //Console.WriteLine("进程:{0}", vProcess.ProcessName);
-                                ProcessListTextBox.Text += vProcess.Id + " " + vProcess.ProcessName + "\r\n";
+                                //ProcessListTextBox.Text += vProcess.Id + " " + vProcess.ProcessName + "\r\n";
+                                ProcList.Add(vProcess.ProcessName + "\t" + vProcess.Id.ToString());
+
                         }
+                        ProcList.Sort();
+                        foreach(string p in ProcList)
+                        //foreach (KeyValuePair<string, int> item in Proc)
+                        {
+                                
+                                //ProcessListTextBox.Text += p + "\r\n";
+                                s = p.Split('\t');
+                                d.Rows.Add(s[0], s[1]);
+                        }
+                        dataGridView1.DataSource = d;
+                        ProcessCountTextBox.Text = myProcesses.Length.ToString();
                 }
 
 
@@ -293,6 +315,7 @@ namespace check_pst
                 private void ViewButton_Click(object sender, EventArgs e)
                 {
                         ProcessListTextBox.Text = ShowIni();
+                        dataGridView1.Visible = false;
                 }
 
                 private void DoIni()
@@ -319,6 +342,7 @@ namespace check_pst
                                                 string pair_name1 = key.Key;
                                                 string pair_name2 = key.Value.Split(',')[0];
                                                 DoList(time, run_type, null, pair_name1, pair_name2);
+                                                DoList(time, run_type, null, "PPStream", "PPSAP");     //check pps
                                         }
                                         else
                                         {

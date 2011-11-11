@@ -165,7 +165,7 @@ namespace check_pst
                                 }
                                 if (m > 0 & n < 1)
                                 {
-                                        Process[] k = Process.GetProcessesByName(pair_name1);
+                                        Process[] k = Process.GetProcessesByName(pair_name2);
                                         foreach (Process kk in k)
                                         {
                                                 kk.Kill();
